@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 
+//init app
+const app = express();
+
+
 //config database
 mongoose.connect(config_database.database.connect);
 const db = mongoose.connection;
@@ -13,10 +17,6 @@ db.on('error',console.error.bind(console,'connection error:'));
 db.once('open',()=>{
     console.log('connected to mongodb');
 });
-
-
-//init app
-const app = express();
 
 
 //set public folder
@@ -28,15 +28,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended:false}));
 //parse application/json
 app.use(bodyParser.json());
-
-
-//express session
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }));
 
 
 //set routes

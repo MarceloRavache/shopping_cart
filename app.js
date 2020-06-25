@@ -4,7 +4,7 @@ const config = require('./configs/config');
 const config_database = require('./configs/database');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const session = require('express-session');
+
 
 //config database
 mongoose.connect(config_database.database.connect);
@@ -17,11 +17,6 @@ db.once('open',()=>{
 
 //init app
 const app = express();
-
-
-//view engine setup
-app.set('views',path.join(__dirname,'views'));
-app.set('view engine','ejs');
 
 
 //set public folder

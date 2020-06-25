@@ -28,7 +28,7 @@ const pages = require('./routes/page');
 const admin_page = require('./routes/admin_pages');
 
 app.set('/',pages);
-app.set('/',admin_pages);
+app.set('/admin',admin_page);
 
 
 app.listen(config.server.port,()=>{

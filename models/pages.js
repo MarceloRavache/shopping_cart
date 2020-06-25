@@ -12,9 +12,6 @@ const PageSchema = mongoose.Schema({
     content:{
         type: String,
         required: true
-    },
-    sorting:{
-        type: Number
     }
 });
 

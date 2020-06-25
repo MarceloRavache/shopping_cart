@@ -11,16 +11,38 @@ route.post('/create-page',(req,res,next)=>{
             const page = new Page({
                 title,
                 slog,
-                content,
-                sorting:0
+                content
             });
             page.save((err)=>{
-                if(err){
-                    return res.send({error:err});
-                }
+                if(err) return res.send({error:err});
+                return res.send({message:"page created"});
             })
         }
     });
+});
+
+route.post('/edit-page/:id',(req,res,next)=>{
+    const id = req.params.id;
+    const { title, slog, content} = req.body;
+    Page.findById(id,(err,page)=>{
+        if(err) return res.send({error:err});
+        page.title = title;
+        page.slog =  slog;
+        page.content = content;
+        page.save((err)=>{
+            if(err) return res.send({error:err});
+            return res.send({title:title,slog:slog,content:content});
+        })
+    })
+});
+
+route.post('/delete-page/:id',(req,res,next)=>{
+    const id = req.params.id;
+    Page.findByIdAndDelete(id, (err)=>{
+        if(err) return res.send({error:err});
+
+        return res.send({message:"deleted"});
+    })
 });
 
 module.exports = route;

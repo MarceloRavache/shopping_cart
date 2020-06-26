@@ -5,8 +5,8 @@ route.post('/create-page',(req,res,next)=>{
     const { title, slog, content} = req.body;
 
     Page.findOne({title},(err,page)=>{
-        if(page) return res.send({error:"titulo já existe"})
-        const page = new Page({
+        if(page){return res.send({error:"titulo já existe"})}
+        page = new Page({
             title,
             slog,
             content
@@ -40,6 +40,15 @@ route.post('/delete-page/:id',(req,res,next)=>{
 
         return res.send({message:"pagina deletada"});
     });
+});
+
+route.get('/list-page', async (req,res,next)=>{
+    await Page.find({},(err,pages)=>{
+        if(err) return res.send({error:err});
+
+        return res.send({pages:pages});
+    });
+    
 });
 
 module.exports = route;

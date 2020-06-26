@@ -6,7 +6,7 @@ route.post('/create-category',(req,res,next)=>{
 
     Category.findOne({title},(err,category)=>{
         if(category) return res.send({error:"Categoria já existe"});
-        const category = new Category({
+        category = new Category({
             title,
             slog
         });
@@ -38,6 +38,15 @@ route.post('/delete-category/:id',(req,res,next)=>{
 
         return res.send({message:"category deletada"});
     })
+});
+
+route.get('/list-category', async (req,res,next)=>{
+    await Category.find({},(err,categories)=>{
+        if(err) return res.send({error:err});
+
+        return res.send({category:categories});
+    });
+    
 });
 
 module.exports = route;

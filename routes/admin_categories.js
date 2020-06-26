@@ -36,7 +36,7 @@ route.post('/delete-category/:id',(req,res,next)=>{
     Category.findByIdAndDelete(id, (err)=>{
         if(err) return res.send({error:err});
 
-        return res.send({message:"category deletada"});
+        return res.send({message:"categoria deletada"});
     })
 });
 
@@ -44,7 +44,7 @@ route.get('/list-category', async (req,res,next)=>{
     await Category.find({},(err,categories)=>{
         if(err) return res.send({error:err});
 
-        return res.send({category:categories});
+        return res.send({categories:categories});
     });
     
 });

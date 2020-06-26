@@ -34,10 +34,14 @@ app.use(bodyParser.json());
 const pages = require('./routes/page');
 const admin_page = require('./routes/admin_pages');
 const admin_category = require('./routes/admin_categories');
+const admin_category = require('./routes/admin_products');
+
 
 app.use('/',pages);
 app.use('/admin/page',admin_page);
 app.use('/admin/category',admin_category);
+app.use('/admin/product',admin_product);
+
 
 
 app.listen(config.server.port,()=>{

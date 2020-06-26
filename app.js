@@ -33,10 +33,11 @@ app.use(bodyParser.json());
 //set routes
 const pages = require('./routes/page');
 const admin_page = require('./routes/admin_pages');
-const { Session } = require('inspector');
+const admin_category = require('./routes/admin_categories');
 
 app.use('/',pages);
-app.use('/admin',admin_page);
+app.use('/admin/page',admin_page);
+app.use('/admin/category',admin_category);
 
 
 app.listen(config.server.port,()=>{

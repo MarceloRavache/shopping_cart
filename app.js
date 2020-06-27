@@ -31,15 +31,10 @@ app.use(bodyParser.json());
 
 
 //set routes
-const pages = require('./routes/page');
-const admin_page = require('./routes/admin_pages');
-const admin_category = require('./routes/admin_categories');
-const admin_category = require('./routes/admin_products');
+const admin_product = require('./routes/admin_products');
 
 
-app.use('/',pages);
-app.use('/admin/page',admin_page);
-app.use('/admin/category',admin_category);
+//app.use('/',pages);
 app.use('/admin/product',admin_product);
 
 

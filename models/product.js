@@ -6,9 +6,6 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    slog:{
-        type: String
-    },
     desc:{
         type: String,
         required: true

@@ -2,13 +2,12 @@ const route = require('express').Router();
 const Product = require('../models/product');
 
 route.post('/create-product',(req,res,next)=>{
-    const { title, slog, desc, category, price, image} = req.body;
+    const { title, desc, category, price, image} = req.body;
 
     Product.findOne({title},(err,product)=>{
         if(product) return res.send({error:"produto já existe"});
         product = new Product({
             title,
-            slog,
             desc,
             category,
             price,
@@ -23,11 +22,10 @@ route.post('/create-product',(req,res,next)=>{
 
 route.post('/edit-product/:id',(req,res,next)=>{
     const id = req.params.id;
-    const {title, slog, desc, category, price, image} = req.body;
+    const {title, desc, category, price, image} = req.body;
     Product.findById(id,(err,product)=>{
         if(err) return res.send({error:err});
         if(title !== "") product.title = title;
-        if(slog !== "") product.slog = slog;
         if(desc !== "") product.desc = desc;
         if(category !== "") product.category = category;
         if(price !== "") product.price = price;
